@@ -2,12 +2,10 @@
 
 let currentlyDisplayedBurger;
 
-// console.log(spanElement)
 // Callbacks
 const displayBurgerDetails = (burgers) => {
-    // console.log(burgers)
+    
     currentlyDisplayedBurger = burgers
-    const foodElement = document.querySelector('#food-detail')
     const foodImageElement = document.getElementById('image')
     const foodNameElement = document.getElementById('name')
     const addToCartElement = document.getElementById('number-in-cart-count')
@@ -29,7 +27,7 @@ const addToCart = () => {
     })
 }
 
-const addBurgerNamesToMenu = (foods) => {
+const addBurgerNamesToMenu = () => {
 const burgerNameElement = document.querySelector('#restaurant-menu')
   fetch('http://localhost:3000/burgers')
     .then(response => response.json())
@@ -37,17 +35,27 @@ const burgerNameElement = document.querySelector('#restaurant-menu')
             foods.forEach(burger => {
             const spanElement = document.createElement('span')
                 spanElement.textContent = burger.name
+               
                 // A Deliverable #2
+               
                 const burgerDiv = document.createElement('div')
                 const deleteButton = document.createElement('button')
                 deleteButton.textContent = 'DELETE'
                 deleteButton.addEventListener('click', () => {
                     deleteButton.parentNode.remove()
+                    if(currentlyDisplayedBurger.id === burger.id) {
+                        const defaultData = {
+                            name: 'Name Of Burger',
+                            image: './assets/image-placeholder.jpg',
+                            number_in_cart: '[X]'
+                        }
+                        displayBurgerDetails(defaultData)
+                    }
                 })
                 
                 burgerDiv.appendChild(spanElement)
-                deleteButton.appendChild(spanElement)
-                burgerNameElement.appendChild(spanElement)   
+                burgerDiv.appendChild(deleteButton)
+                burgerNameElement.appendChild(burgerDiv)   
                 spanElement.addEventListener('click', () => {
                     displayBurgerDetails(burger)
                 })
