@@ -35,6 +35,11 @@ const burgerNameElement = document.querySelector('#restaurant-menu')
             foods.forEach(burger => {
             const spanElement = document.createElement('span')
                 spanElement.textContent = burger.name
+                // If you want to upload the photos to the website this is how you would do it. Create a variable and store the HTML elements of the pictures to it. Then you use the .src attribute to set the value of the image and you get the URL from the burger.image
+
+            // const imgElement = document.createElement('img')
+            //     imgElement.src = burger.image
+            //     console.log(imgElement)
                
                 // A Deliverable #2
                
@@ -53,9 +58,11 @@ const burgerNameElement = document.querySelector('#restaurant-menu')
                     }
                 })
                 
-                burgerDiv.appendChild(spanElement)
-                burgerDiv.appendChild(deleteButton)
-                burgerNameElement.appendChild(burgerDiv)   
+               burgerDiv.appendChild(spanElement)
+               burgerDiv.appendChild(deleteButton)
+                
+                burgerNameElement.appendChild(burgerDiv)  
+                burgerNameElement.appendChild(imgElement) 
                 spanElement.addEventListener('click', () => {
                     displayBurgerDetails(burger)
                 })
@@ -71,3 +78,9 @@ const main = () => {
 
 main()
 
+
+// Knowing what to append to what. So whenever you want to append something to the website using the appendChild() method you need to give it a starting point. Example being the parent node. so for this lab we were appending the span element that we created into the burgerDiv that we created. We also appended the buttonElement that we created to the burgerDiv since the burgerDiv is the parent of the span and button element. And finally we appended the burgerDiv to the burgerNameElement because that is the parent to the burgerDiv. 
+
+// burgerNameElement (biggest)
+//burgerDiv(smaller than the burgerNameElement so it fits inside of it)
+//spanElement and deleteButton(smaller than the burgerDiv so they fit inside of it)
